@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,10 @@ public class PlanetNetAPIManager : MonoBehaviour
     [SerializeField] private string endPoint = "v2/identify";
     
     [SerializeField] private CameraManager cameraManager;
+
+    [SerializeField] private APIResponse apiResponse;
+
+    public event Action<APIResponse> ReceivedPlanetNetResponse; 
 
     [ContextMenu("UploadPlantImages")]
     public void UploadPlantImages()
@@ -59,6 +64,10 @@ public class PlanetNetAPIManager : MonoBehaviour
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("Upload success: " + request.downloadHandler.text);
+
+            apiResponse = JsonUtility.FromJson<APIResponse>(request.downloadHandler.text);
+            
+            ReceivedPlanetNetResponse?.Invoke(apiResponse);
         }
         else
         {

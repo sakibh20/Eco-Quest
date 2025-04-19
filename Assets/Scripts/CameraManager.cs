@@ -5,6 +5,7 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] private int maxSize = 512;
     [SerializeField] private RawImage rawImage;
+    [SerializeField] private RawImage rawImageInDescription;
 
     [HideInInspector] public Texture2D capturedTexture;
     [HideInInspector] public string imagePath;
@@ -29,6 +30,7 @@ public class CameraManager : MonoBehaviour
                     return;
                 }
                 rawImage.texture = capturedTexture;
+                rawImageInDescription.texture = capturedTexture;
             }
         }, maxSize );
     }
