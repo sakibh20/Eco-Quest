@@ -13,7 +13,6 @@ public class UIManager : MonoBehaviour
     {
         inputPanel.SetActive(false);
         profilePanel.SetActive(true);
-        //TODO: Text Set
         profileName.text= nameInputField.text;
     }
 }
