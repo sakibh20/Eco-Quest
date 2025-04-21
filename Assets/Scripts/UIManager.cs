@@ -19,6 +19,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private TMP_InputField userNameInputField;
 
+    [SerializeField] private Canvas scanCanvas;
+    [SerializeField] private Canvas gameCanvas;
+
     [SerializeField] private DescriptionUIManager descriptionUIManager;
     [SerializeField] private RewardUiManager rewardUiManager;
 
@@ -140,8 +143,15 @@ public class UIManager : MonoBehaviour
         rewardPanel.SetActive(false);
     }
 
-    public void OnClickSubmitQnAn()
+    public void ShowGame()
     {
-        
+        gameCanvas.gameObject.SetActive(true);
+        scanCanvas.gameObject.SetActive(false);
+    }
+
+    public void HideGame()
+    {
+        gameCanvas.gameObject.SetActive(false);
+        scanCanvas.gameObject.SetActive(true);
     }
 }
