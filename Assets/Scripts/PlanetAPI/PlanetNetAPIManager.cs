@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,10 @@ public class PlanetNetAPIManager : MonoBehaviour
     [SerializeField] private string endPoint = "v2/identify";
     
     [SerializeField] private CameraManager cameraManager;
+
+    [SerializeField] private APIResponse apiResponse;
+
+    public event Action<APIResponse> ReceivedPlanetNetResponse; 
 
     [ContextMenu("UploadPlantImages")]
     public void UploadPlantImages()
@@ -55,15 +60,20 @@ public class PlanetNetAPIManager : MonoBehaviour
         request.SetRequestHeader("Content-Type", "multipart/form-data; boundary=" + boundary);
         
         yield return request.SendWebRequest();
+        apiResponse = new APIResponse();
         
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("Upload success: " + request.downloadHandler.text);
+
+            apiResponse = JsonUtility.FromJson<APIResponse>(request.downloadHandler.text);
         }
         else
         {
             Debug.LogError($"Upload failed: {request.error}, Code: {request.responseCode}");
         }
+        
+        ReceivedPlanetNetResponse?.Invoke(apiResponse);
     }
     
     private byte[] BuildMultipartFormData(Texture2D texture, string boundary)
