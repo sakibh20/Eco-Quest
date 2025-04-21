@@ -15,6 +15,9 @@ public class TogetherAIPlantInfo : MonoBehaviour
     public PlantInfo info;
     [SerializeField] private PlanetNetAPIManager planetNetAPIManager;
 
+    private int _tryCount = 0;
+
+    private APIResponse _lastResponse;
     public event Action<PlantInfo> ReceivedTogetherResponse;
 
     private void OnEnable() => planetNetAPIManager.ReceivedPlanetNetResponse += OnReceivedApiResponse;
@@ -24,9 +27,21 @@ public class TogetherAIPlantInfo : MonoBehaviour
     {
         if (response.results.Count == 0) return;
 
+        _lastResponse = response;
+        _tryCount = 0;
+
+        GetDescription();
+    }
+
+    private void GetDescription()
+    {
+        _tryCount += 1;
+        
+        if(_tryCount == 5) return;
+        
         RequestPlantInfo(
-            response.results[0].species.commonNames[0],
-            response.results[0].species.family.scientificName
+            _lastResponse.results[0].species.commonNames[0],
+            _lastResponse.results[0].species.family.scientificName
         );
     }
 
@@ -85,16 +100,18 @@ public class TogetherAIPlantInfo : MonoBehaviour
                 if (!string.IsNullOrEmpty(extractedJson))
                 {
                     info = JsonConvert.DeserializeObject<PlantInfo>(extractedJson);
-                    Debug.Log("✅ Parsed Plant Info!");
+                    Debug.Log("Parsed Plant Info!");
                 }
                 else
                 {
-                    Debug.LogWarning("⚠ Could not extract JSON from model output.");
+                    Debug.LogWarning("Could not extract JSON from model output.");
+                    GetDescription();
                 }
             }
             catch (Exception ex)
             {
                 Debug.LogError("Parsing Error: " + ex.Message);
+                GetDescription();
             }
         }
 

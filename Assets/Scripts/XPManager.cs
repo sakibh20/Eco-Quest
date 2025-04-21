@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class XPManager : MonoBehaviour
@@ -6,6 +7,9 @@ public class XPManager : MonoBehaviour
     public int XP => xp;
 
     private string xpKey = "xp";
+
+    public event Action<int> XPAdded; 
+    public event Action<int> XPCountChanged; 
     
     public static XPManager Instance;
 
@@ -14,7 +18,6 @@ public class XPManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            InitXP();
         }
         else
         {
@@ -22,11 +25,17 @@ public class XPManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        InitXP();
+    }
+
     private void InitXP()
     {
         if (PlayerPrefs.HasKey(xpKey))
         {
             xp = PlayerPrefs.GetInt(xpKey);
+            StoreXP();
         }
     }
 
@@ -34,6 +43,7 @@ public class XPManager : MonoBehaviour
     {
         xp += value;
         StoreXP();
+        XPAdded?.Invoke(value);
     }
 
     public void ReduceXP(int value)
@@ -51,5 +61,7 @@ public class XPManager : MonoBehaviour
     private void StoreXP()
     {
         PlayerPrefs.SetInt(xpKey, xp);
+        
+        XPCountChanged?.Invoke(xp);
     }
 }

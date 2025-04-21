@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -24,6 +25,30 @@ public class UIManager : MonoBehaviour
     private string nameValueKey = "playerName";
     private string userNameValueKey = "userName";
 
+    public static UIManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnEnable()
+    {
+        XPManager.Instance.XPCountChanged += OnXPUpdated;
+    }
+
+    private void OnDisable()
+    {
+        XPManager.Instance.XPCountChanged -= OnXPUpdated;
+    }
+
     private void Start()
     {
         InitUi();
@@ -40,6 +65,12 @@ public class UIManager : MonoBehaviour
             ShowSignUp();
         }
     }
+    
+    private void OnXPUpdated(int xp)
+    {
+        xpText.text = $"{XPManager.Instance.XP.ToString()} XP";
+    }
+
     
     private void UpdateStoredInfo()
     {
@@ -62,14 +93,8 @@ public class UIManager : MonoBehaviour
     private void ShowHome()
     {
         profileName.text = $"Hello, {PlayerPrefs.GetString(userNameValueKey)}";
-        UpdateXPTextUi();
         inputPanel.SetActive(false);
         homePanel.SetActive(true);
-    }
-
-    public void UpdateXPTextUi()
-    {
-        xpText.text = $"{XPManager.Instance.XP.ToString()} XP";
     }
     
     public void ShowPreview()

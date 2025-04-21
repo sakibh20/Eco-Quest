@@ -11,14 +11,19 @@ public class DescriptionUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI descriptionText;
     [SerializeField] private TextMeshProUGUI habitatText;
     [SerializeField] private TextMeshProUGUI factsText;
+    [SerializeField] private TextMeshProUGUI xpText;
     
     [SerializeField] private TextMeshProUGUI matchPercentagesText;
     [SerializeField] private TextMeshProUGUI matchWithText;
 
     [SerializeField] private PlanetNetAPIManager planetNetAPIManager;
     [SerializeField] private TogetherAIPlantInfo aiAPIManager;
+
+    private int xpForChallenege = 70;
+    private int currentChallenge = 0;
     
-    private void OnEnable()
+
+    private void Start()
     {
         Subscribe();
     }
@@ -32,12 +37,14 @@ public class DescriptionUIManager : MonoBehaviour
     {
         planetNetAPIManager.ReceivedPlanetNetResponse += OnReceivedApiResponse;
         aiAPIManager.ReceivedTogetherResponse += OnReceivedDescription;
+        XPManager.Instance.XPAdded += OnXPAdded;
     }
     
     private void UnSubscribe()
     {
         planetNetAPIManager.ReceivedPlanetNetResponse -= OnReceivedApiResponse;
         aiAPIManager.ReceivedTogetherResponse -= OnReceivedDescription;
+        XPManager.Instance.XPAdded -= OnXPAdded;
     }
 
     public void InitDescription()
@@ -51,6 +58,12 @@ public class DescriptionUIManager : MonoBehaviour
         familyText.text = "";
         descriptionText.text = "";
     }
+    
+    private void OnXPAdded(int value)
+    {
+        currentChallenge += value;
+        xpText.text = $"{currentChallenge}<size=30>XP</size>";
+    }
 
     private void OnReceivedApiResponse(APIResponse response)
     {
@@ -61,6 +74,9 @@ public class DescriptionUIManager : MonoBehaviour
             
             return;
         }
+
+        //ShowXP();
+        XPManager.Instance.AddXP(xpForChallenege);
         
         matchPercentagesText.text = $"{(int)(response.results[0].score*100)}% Match";
         matchWithText.text = $"Match with <b>{response.results[0].species.commonNames[0]}</b>";

@@ -52,4 +52,20 @@ public class RewardUiManager : MonoBehaviour
             _allGeneratedItems.Add(item);
         }
     }
+
+    public void GetResult()
+    {
+        int correctCount = 0;
+        
+        foreach (QuestionItem questionItem in _allGeneratedItems)
+        {
+            if (questionItem.IsCorrect()) correctCount += 1;
+        }
+
+        int additionalReward = correctCount * 5;
+        
+        Debug.Log($"AdditionalReward: {additionalReward}");
+        
+        XPManager.Instance.AddXP(additionalReward);
+    }
 }
