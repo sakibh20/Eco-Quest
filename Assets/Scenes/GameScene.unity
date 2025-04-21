@@ -6611,7 +6611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Username: skb_sec'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11282,7 +11282,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Name: Sakib Hasan'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16622,6 +16622,9 @@ MonoBehaviour:
   userNameInputField: {fileID: 1463837988}
   scanCanvas: {fileID: 922702809}
   gameCanvas: {fileID: 1969503631}
+  userNameInProfileText: {fileID: 817691672}
+  nameTextInProfile: {fileID: 1329158769}
+  xpTextInProfile: {fileID: 665883554}
   descriptionUIManager: {fileID: 788704451}
   rewardUiManager: {fileID: 1819705850}
 --- !u!1 &2051757963

@@ -22,6 +22,10 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Canvas scanCanvas;
     [SerializeField] private Canvas gameCanvas;
+    
+    [SerializeField] private TextMeshProUGUI userNameInProfileText;
+    [SerializeField] private TextMeshProUGUI nameTextInProfile;
+    [SerializeField] private TextMeshProUGUI xpTextInProfile;
 
     [SerializeField] private DescriptionUIManager descriptionUIManager;
     [SerializeField] private RewardUiManager rewardUiManager;
@@ -74,6 +78,7 @@ public class UIManager : MonoBehaviour
     {
         xpText.text = $"{XPManager.Instance.XP.ToString()} XP";
         xpInGameText.text = $"{XPManager.Instance.XP.ToString()}";
+        xpTextInProfile.text = $"XP: {XPManager.Instance.XP.ToString()}";
     }
 
     
@@ -100,6 +105,9 @@ public class UIManager : MonoBehaviour
         profileName.text = $"Hello, {PlayerPrefs.GetString(userNameValueKey)}";
         inputPanel.SetActive(false);
         homePanel.SetActive(true);
+
+        nameTextInProfile.text = $"Name: {PlayerPrefs.GetString(nameValueKey)}";
+        userNameInProfileText.text = $"Username: {PlayerPrefs.GetString(userNameValueKey)}";
     }
     
     public void ShowPreview()
