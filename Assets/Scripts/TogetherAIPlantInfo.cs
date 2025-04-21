@@ -11,7 +11,6 @@ public class TogetherAIPlantInfo : MonoBehaviour
     [SerializeField] private string togetherAPIKey;
     [SerializeField] private string model = "mistralai/Mixtral-8x7B-Instruct-v0.1";
 
-    public PlantInfo info2;
     public PlantInfo info;
     [SerializeField] private PlanetNetAPIManager planetNetAPIManager;
 
@@ -47,8 +46,15 @@ public class TogetherAIPlantInfo : MonoBehaviour
 
     private void RequestPlantInfo(string commonName, string scientificName)
     {
-        string prompt = $"Only return a clean JSON. Structure: {{\"Description\":\"...\",\"Habitat\":\"...\",\"Interesting_Facts\":[\"...\"],\"MCQs\":[{{\"question\":\"...\",\"options\":[\"A\",\"B\",\"C\",\"D\"],\"answer\":\"A\"}}]}} " +
+        // string prompt = $"Only return a clean JSON. Structure: {{\"Description\":\"...\",\"Habitat\":\"...\",\"Interesting_Facts\":[\"...\"],\"MCQs\":[{{\"question\":\"...\",\"options\":[\"A\",\"B\",\"C\",\"D\"],\"answer\":\"A\"}}]}} " +
+        //                 $"Info: Common Name = {commonName}, Scientific Name = {scientificName}";
+        
+        string prompt = $"Only return a clean JSON. Structure: " +
+                        "{{\"Description\":\"...\",\"Habitat\":\"...\",\"Interesting_Facts\":[\"...\"]," +
+                        "\"MCQs\":[{{\"question\":\"...\",\"options\":[\"Option A\",\"Option B\",\"Option C\",\"Option D\"],\"answer\":3}}, ... (at least 3 MCQs)]}} " +
+                        $"Ensure there are at least 3 MCQs. Each MCQ must contain exactly 4 options, and the 'answer' must be the 1-based index (1 to 4) of the correct option. " +
                         $"Info: Common Name = {commonName}, Scientific Name = {scientificName}";
+
 
         StartCoroutine(CallTogetherAI(prompt));
     }
@@ -85,6 +91,7 @@ public class TogetherAIPlantInfo : MonoBehaviour
         {
             Debug.LogError("OpenAI API Error: " + request.error);
             Debug.LogError("Response: " + request.downloadHandler.text);
+            GetDescription();
         }
         else
         {
@@ -171,5 +178,5 @@ public class MCQ
 {
     public string question;
     public List<string> options;
-    public string answer;
+    public int answer;
 }

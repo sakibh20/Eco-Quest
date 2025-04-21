@@ -15,7 +15,7 @@ public class QuestionItem : MonoBehaviour
     {
         mcq = m;
 
-        qn.text = mcq.question;
+        qn.text = $"{mcq.question} [-/5]";
 
         for (int i = 0; i < allOptions.Count; i++)
         {
@@ -35,10 +35,18 @@ public class QuestionItem : MonoBehaviour
         {
             if (allToggles[i].isOn)
             {
-                return mcq.options[i] == mcq.answer;
+                if (i+1 == mcq.answer)
+                {
+                    qn.text = $"{mcq.question} [5/5]";
+                    return true;
+                }
+                
+                qn.text = $"{mcq.question} [0/5]";
+                return false;
             }
         }
 
+        qn.text = $"{mcq.question} [0/5]";
         return false;
     }
 }

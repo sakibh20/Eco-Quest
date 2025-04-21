@@ -49,6 +49,8 @@ public class DescriptionUIManager : MonoBehaviour
 
     public void InitDescription()
     {
+        currentChallenge = 0;
+        
         matchPercentagesText.text = "0% Match";
         matchWithText.text = "";
         
@@ -57,6 +59,10 @@ public class DescriptionUIManager : MonoBehaviour
         genusText.text = "";
         familyText.text = "";
         descriptionText.text = "";
+        
+        descriptionText.text = "";
+        habitatText.text = "";
+        factsText.text = "";
     }
     
     private void OnXPAdded(int value)

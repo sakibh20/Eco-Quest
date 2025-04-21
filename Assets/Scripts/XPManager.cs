@@ -35,8 +35,8 @@ public class XPManager : MonoBehaviour
         if (PlayerPrefs.HasKey(xpKey))
         {
             xp = PlayerPrefs.GetInt(xpKey);
-            StoreXP();
         }
+        StoreXP();
     }
 
     public void AddXP(int value)

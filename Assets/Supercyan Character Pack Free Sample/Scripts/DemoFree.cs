@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Supercyan.FreeSample
 {
@@ -9,6 +10,7 @@ namespace Supercyan.FreeSample
         private Animator[] m_animators = null;
         [SerializeField] private FreeCameraLogic m_cameraLogic = null;
 
+        [Obsolete("Obsolete")]
         private void Start()
         {
             m_animators = FindObjectsOfType<Animator>();
