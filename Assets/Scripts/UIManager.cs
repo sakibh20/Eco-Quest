@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_InputField userNameInputField;
 
     [SerializeField] private DescriptionUIManager descriptionUIManager;
+    [SerializeField] private RewardUiManager rewardUiManager;
 
     private string nameValueKey = "playerName";
     private string userNameValueKey = "userName";
@@ -106,10 +107,16 @@ public class UIManager : MonoBehaviour
     public void ShowRewardView()
     {
         rewardPanel.SetActive(true);
+        //rewardUiManager.Init();
     }
     
     public void HideRewardView()
     {
         rewardPanel.SetActive(false);
+    }
+
+    public void OnClickSubmitQnAn()
+    {
+        
     }
 }
