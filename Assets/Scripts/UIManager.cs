@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_InputField userNameInputField;
 
     [SerializeField] private Canvas scanCanvas;
-    [SerializeField] private Canvas gameCanvas;
+    [SerializeField] private GameObject gameAssets;
     
     [SerializeField] private TextMeshProUGUI userNameInProfileText;
     [SerializeField] private TextMeshProUGUI nameTextInProfile;
@@ -155,13 +155,13 @@ public class UIManager : MonoBehaviour
 
     public void ShowGame()
     {
-        gameCanvas.gameObject.SetActive(true);
+        gameAssets.SetActive(true);
         scanCanvas.gameObject.SetActive(false);
     }
 
     public void HideGame()
     {
-        gameCanvas.gameObject.SetActive(false);
+        gameAssets.SetActive(false);
         scanCanvas.gameObject.SetActive(true);
     }
 }
