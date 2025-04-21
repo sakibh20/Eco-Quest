@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.7248576, g: 0.77147377, b: 0.8584906, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.8494571, g: 0.8784016, b: 0.9528302, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 63c7f212f60aadc47945b935dc40e7c0, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.2
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -4897,43 +4897,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   togetherAPIKey: tgp_v1_IO876zOqBfpnFdkPFgbd6zQGes8-D816XsTEzv2B5p0
   model: mistralai/Mixtral-8x7B-Instruct-v0.1
-  info2:
-    Description: The Chocolate cosmos, scientifically known as Asteraceae, is a unique
-      flowering plant that is native to Mexico. It is a perennial plant that grows
-      up to 1.2 meters in height and produces deep maroon to brown flowers that have
-      a distinct chocolate scent, hence its common name.
-    Habitat: The Chocolate cosmos thrives in well-drained soil and full sun. It is
-      a drought-tolerant plant that is typically found in meadows and grasslands
-      in its native Mexico.
-    InterestingFacts:
-    - The Chocolate cosmos is now extinct in the wild, and all existing plants are
-      descendants of a single clone that was discovered in the late 19th century.
-    - The chocolate scent of the Chocolate cosmos is due to the presence of certain
-      organic compounds called ionones, which are also found in chocolate.
-    - The Chocolate cosmos is a popular ornamental plant due to its unique scent
-      and attractive flowers, and is often used in perfumes, potpourri, and cosmetics.
-    MCQs:
-    - question: What is the common name of Asteraceae?
-      options:
-      - Chocolate cosmos
-      - Garden cosmos
-      - Mexican aster
-      - Chocolate daisy
-      answer: Chocolate cosmos
-    - question: What is the habitat of Chocolate cosmos?
-      options:
-      - Swampy areas
-      - Shaded areas
-      - Well-drained soil and full sun
-      - Saltwater environments
-      answer: Well-drained soil and full sun
-    - question: Why is Chocolate cosmos called so?
-      options:
-      - Due to its brown color
-      - Due to its chocolate scent
-      - Due to its origin in Mexico
-      - Due to its rare occurrence
-      answer: Due to its chocolate scent
   info:
     Description: 
     Habitat: 
