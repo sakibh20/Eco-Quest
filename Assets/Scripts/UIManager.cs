@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI profileName;
     [SerializeField] private TextMeshProUGUI xpText;
+    [SerializeField] private TextMeshProUGUI xpInGameText;
 
     [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private TMP_InputField userNameInputField;
@@ -72,6 +73,7 @@ public class UIManager : MonoBehaviour
     private void OnXPUpdated(int xp)
     {
         xpText.text = $"{XPManager.Instance.XP.ToString()} XP";
+        xpInGameText.text = $"{XPManager.Instance.XP.ToString()}";
     }
 
     
