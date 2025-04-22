@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,12 @@ public class RewardUiManager : MonoBehaviour
     [SerializeField] private TogetherAIPlantInfo aiAPIManager;
 
     private List<QuestionItem> _allGeneratedItems = new List<QuestionItem>();
-    
+
+    private void Awake()
+    {
+        _allGeneratedItems = new List<QuestionItem>();
+    }
+
     private void OnEnable()
     {
         Subscribe();
@@ -29,7 +35,7 @@ public class RewardUiManager : MonoBehaviour
         aiAPIManager.ReceivedTogetherResponse -= OnReceivedDescription;
     }
     
-    public void Init()
+    private void Init()
     {
         foreach (QuestionItem item in _allGeneratedItems)
         {
@@ -43,8 +49,11 @@ public class RewardUiManager : MonoBehaviour
     {
         Init();
         
-        if(plantInfo == null || plantInfo.ToString() == "{}" || plantInfo.Description == "") return;
+        if(plantInfo.ToString() == "{}" || plantInfo.Description == "") return;
 
+        Debug.Log($"plantInfo: {plantInfo}");
+        Debug.Log($"plantInfo.Description: {plantInfo.Description}");
+        
         foreach (MCQ mcq in plantInfo.MCQs)
         {
             QuestionItem item = Instantiate(questionItemPrefab, itemParent);
