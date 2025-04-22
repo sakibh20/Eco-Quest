@@ -134,12 +134,40 @@ public class UIManager : MonoBehaviour
     
     public void ShowProfileView()
     {
+        HideChallengesView();
+        HideCollectionsView();
         profilePanel.SetActive(true);
     }
     
     public void HideProfileView()
     {
         profilePanel.SetActive(false);
+    }
+    
+    public void ShowChallengesView()
+    {
+        HideProfileView();
+        HideCollectionsView();
+        challengesPanel.SetActive(true);
+        //rewardUiManager.Init();
+    }
+    
+    public void HideChallengesView()
+    {
+        challengesPanel.SetActive(false);
+    }
+    
+    public void ShowCollectionsView()
+    {
+        HideProfileView();
+        HideChallengesView();
+        collectionPanel.SetActive(true);
+        //rewardUiManager.Init();
+    }
+    
+    public void HideCollectionsView()
+    {
+        collectionPanel.SetActive(false);
     }
     
     public void ShowRewardView()
