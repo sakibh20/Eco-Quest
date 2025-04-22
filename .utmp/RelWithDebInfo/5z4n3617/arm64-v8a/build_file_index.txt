@@ -1,0 +1,2 @@
+/Users/skb_sec/MS/Sem2/SDL640/Eco-Quest/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/CMakeLists.txt
+/Users/skb_sec/MS/Sem2/SDL640/Eco-Quest/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/GameActivity/CMakeLists.txt

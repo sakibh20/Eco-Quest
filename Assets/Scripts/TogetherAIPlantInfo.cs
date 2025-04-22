@@ -49,11 +49,18 @@ public class TogetherAIPlantInfo : MonoBehaviour
         // string prompt = $"Only return a clean JSON. Structure: {{\"Description\":\"...\",\"Habitat\":\"...\",\"Interesting_Facts\":[\"...\"],\"MCQs\":[{{\"question\":\"...\",\"options\":[\"A\",\"B\",\"C\",\"D\"],\"answer\":\"A\"}}]}} " +
         //                 $"Info: Common Name = {commonName}, Scientific Name = {scientificName}";
         
-        string prompt = $"Only return a clean JSON. Structure: " +
-                        "{{\"Description\":\"...\",\"Habitat\":\"...\",\"Interesting_Facts\":[\"...\"]," +
-                        "\"MCQs\":[{{\"question\":\"...\",\"options\":[\"Option A\",\"Option B\",\"Option C\",\"Option D\"],\"answer\":3}}, ... (at least 3 MCQs)]}} " +
-                        $"Ensure there are at least 3 MCQs. Each MCQ must contain exactly 4 options, and the 'answer' must be the 1-based index (1 to 4) of the correct option. " +
-                        $"Info: Common Name = {commonName}, Scientific Name = {scientificName}";
+        // string prompt = $"Only return a clean JSON. Structure: " +
+        //                 "{{\"Description\":\"...\",\"Habitat\":\"...\",\"Interesting_Facts\":[\"...\"]," +
+        //                 "\"MCQs\":[{{\"question\":\"...\",\"options\":[\"Option A\",\"Option B\",\"Option C\",\"Option D\"],\"answer\":3}}, ... (at least 3 MCQs)]}} " +
+        //                 $"Ensure there are at least 3 MCQs. Each MCQ must contain exactly 4 options, and the 'answer' must be the 1-based index (1 to 4) of the correct option. " +
+        //                 $"Info: Common Name = {commonName}, Scientific Name = {scientificName}";
+
+        string prompt = $"Only return a clean JSON with no nesting or wrappers. " +
+    "It must match this structure exactly: " +
+    "{\"Description\":\"...\",\"Habitat\":\"...\",\"Interesting_Facts\":[\"...\"]," +
+    "\"MCQs\":[{\"question\":\"...\",\"options\":[\"Option A\",\"Option B\",\"Option C\",\"Option D\"],\"answer\":3}]} " +
+    "Ensure there are at least 3 MCQs. Each MCQ must contain exactly 4 options, and the 'answer' must be the 1-based index (1 to 4) of the correct option. " +
+    $"Info: Common Name = {commonName}, Scientific Name = {scientificName}";
 
 
         StartCoroutine(CallTogetherAI(prompt));
@@ -139,7 +146,7 @@ public class TogetherAIPlantInfo : MonoBehaviour
 public class TogetherRequest
 {
     public string model;
-    public List<Message> messages;
+    public List<Message> messages = new List<Message>();
     public float temperature;
     public int max_tokens;
 }
@@ -154,13 +161,13 @@ public class Message
 [Serializable]
 public class TogetherResponse
 {
-    public List<Choice> choices;
+    public List<Choice> choices = new List<Choice>();
 }
 
 [Serializable]
 public class Choice
 {
-    public Message message;
+    public Message message = new Message();
 }
 
 [Serializable]
@@ -169,14 +176,14 @@ public class PlantInfo
     public string Description;
     public string Habitat;
     [JsonProperty("Interesting_Facts")]
-    public List<string> InterestingFacts;
-    public List<MCQ> MCQs;
+    public List<string> InterestingFacts = new List<string>();
+    public List<MCQ> MCQs = new List<MCQ>();
 }
 
 [Serializable]
 public class MCQ
 {
     public string question;
-    public List<string> options;
+    public List<string> options = new List<string>();
     public int answer;
 }
