@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private TMP_InputField userNameInputField;
+    [SerializeField] private Button submitButton;
 
     [SerializeField] private Canvas scanCanvas;
     [SerializeField] private GameObject gameAssets;
@@ -50,15 +52,22 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         XPManager.Instance.XPCountChanged += OnXPUpdated;
+        
+        nameInputField.onValueChanged.AddListener(ValidateLoginInput);
+        userNameInputField.onValueChanged.AddListener(ValidateLoginInput);
     }
 
     private void OnDisable()
     {
         XPManager.Instance.XPCountChanged -= OnXPUpdated;
+        
+        nameInputField.onValueChanged.RemoveListener(ValidateLoginInput);
+        userNameInputField.onValueChanged.RemoveListener(ValidateLoginInput);
     }
 
     private void Start()
     {
+        submitButton.interactable = false;
         InitUi();
     }
 
@@ -71,6 +80,19 @@ public class UIManager : MonoBehaviour
         else
         {
             ShowSignUp();
+        }
+    }
+
+    private void ValidateLoginInput(string value)
+    {
+        if (string.IsNullOrWhiteSpace(nameInputField.text) || string.IsNullOrWhiteSpace(userNameInputField.text))
+        {
+            submitButton.interactable = false;
+        }
+
+        else
+        {
+            submitButton.interactable = true;
         }
     }
     
