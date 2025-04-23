@@ -24,6 +24,7 @@ public class TogetherAIPlantInfo : MonoBehaviour
 
     private void OnReceivedApiResponse(APIResponse response)
     {
+        if(response == null || response.results == null) return;
         if (response.results.Count == 0) return;
 
         _lastResponse = response;

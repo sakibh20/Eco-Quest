@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RewardUiManager : MonoBehaviour
 {
     [SerializeField] private Transform itemParent;
     [SerializeField] private QuestionItem questionItemPrefab;
     [SerializeField] private TogetherAIPlantInfo aiAPIManager;
+    
+    [SerializeField] private Button submitButton;
 
     private List<QuestionItem> _allGeneratedItems = new List<QuestionItem>();
 
@@ -43,6 +46,8 @@ public class RewardUiManager : MonoBehaviour
         }
 
         _allGeneratedItems = new List<QuestionItem>();
+
+        submitButton.interactable = true;
     }
     
     private void OnReceivedDescription(PlantInfo plantInfo)
@@ -76,5 +81,7 @@ public class RewardUiManager : MonoBehaviour
         Debug.Log($"AdditionalReward: {additionalReward}");
         
         XPManager.Instance.AddXP(additionalReward);
+        
+        submitButton.interactable = false;
     }
 }

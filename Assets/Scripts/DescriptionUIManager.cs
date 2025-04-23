@@ -1,6 +1,7 @@
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DescriptionUIManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class DescriptionUIManager : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI matchPercentagesText;
     [SerializeField] private TextMeshProUGUI matchWithText;
+    
+    [SerializeField] private Button continueButton;
 
     [SerializeField] private PlanetNetAPIManager planetNetAPIManager;
     [SerializeField] private TogetherAIPlantInfo aiAPIManager;
@@ -63,6 +66,8 @@ public class DescriptionUIManager : MonoBehaviour
         descriptionText.text = "";
         habitatText.text = "";
         factsText.text = "";
+
+        continueButton.interactable = false;
     }
     
     private void OnXPAdded(int value)
@@ -73,11 +78,9 @@ public class DescriptionUIManager : MonoBehaviour
 
     private void OnReceivedApiResponse(APIResponse response)
     {
-        if(response.results.Count == 0)
+        if(response == null || response.results == null || response.results.Count == 0)
         {
-            matchPercentagesText.text = "0% Match";
-            matchWithText.text = "No Match Found";
-            
+            HandleNoMatchFound(response);
             return;
         }
 
@@ -102,7 +105,14 @@ public class DescriptionUIManager : MonoBehaviour
         genusText.text = $"{response.results[0].species.genus.scientificName}";
         familyText.text = $"{response.results[0].species.family.scientificName}";
         descriptionText.text = "";
-    }    
+    }
+
+    private void HandleNoMatchFound(APIResponse response)
+    {
+        matchPercentagesText.text = "0% Match";
+        matchWithText.text = $"{response.message}";
+        scientificNameText.text = "Try again with better photo";
+    }
     
     private void OnReceivedDescription(PlantInfo plantInfo)
     {
@@ -119,5 +129,7 @@ public class DescriptionUIManager : MonoBehaviour
         descriptionText.text = plantInfo.Description;
         habitatText.text = plantInfo.Habitat;
         factsText.text = facts.ToString();
+        
+        continueButton.interactable = true;
     }
 }

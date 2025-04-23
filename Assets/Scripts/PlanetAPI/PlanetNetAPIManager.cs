@@ -60,16 +60,18 @@ public class PlanetNetAPIManager : MonoBehaviour
         request.SetRequestHeader("Content-Type", "multipart/form-data; boundary=" + boundary);
         
         yield return request.SendWebRequest();
-        apiResponse = new APIResponse();
+        
+        apiResponse = JsonUtility.FromJson<APIResponse>(request.downloadHandler.text);
         
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("Upload success: " + request.downloadHandler.text);
 
-            apiResponse = JsonUtility.FromJson<APIResponse>(request.downloadHandler.text);
+            //apiResponse = JsonUtility.FromJson<APIResponse>(request.downloadHandler.text);
         }
         else
         {
+            //apiResponse = JsonUtility.FromJson<APIResponse>(request.downloadHandler.text);
             Debug.LogError($"Upload failed: {request.error}, Code: {request.responseCode}");
         }
         

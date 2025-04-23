@@ -68,6 +68,9 @@ public class APIResponse
     public string bestMatch;
     public List<Result> results;
     public string version;
+    public string statusCode;
+    public string error;
+    public string message;
     public int remainingIdentificationRequests;
 }
 
