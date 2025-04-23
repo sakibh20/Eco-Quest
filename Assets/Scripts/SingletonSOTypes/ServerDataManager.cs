@@ -1,31 +1,35 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System.IO;
 
 [Serializable]
-[CreateAssetMenu(menuName = "SingletonSOs/ServerDataManager")]
-public class ServerDataManager : SingletonSO<ServerDataManager>
+[CreateAssetMenu(menuName = "SingletonSOs/GameDataManager")]
+public class GameDataManager : SingletonSO<GameDataManager>
 {
-    public string baseUrl;
-    public string registrationEndPoint;
-    public string loginEndpoint;
-    public string logoutEndpoint;
-    public string leaderboardEndpoint;
+    public PlayerData playerData;
+    public ChallengeData challengeData;
+    public CollectionData collectionData;
 
-    public ServerResponse serverResponse;
-    public LeaderboardResponse leaderboardResponse;
+    private static string basePath => Application.persistentDataPath;
+    private static string PlayerPath => Path.Combine(basePath, "PlayerData.json");
+    private static string CollectionPath => Path.Combine(basePath, "Collections.json");
+    private static string ChallengePath => Path.Combine(basePath, "Challenges.json");
 
-    public WSLobbyMessage wsLobbyMessage;
-
-    public string FailedStatus = "failed";
-    public string SuccessStatus = "ok";
-    
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void OnBeforeSceneLoad()
     {
-        ServerDataManager instance = Instance;
+        GameDataManager instance = Instance;
         if (instance != null)
         {
+            var playerData = LoadPlayer();
+            var collectionData = LoadCollections();
+            var challengeData = LoadChallenges();
+
+            instance.playerData = playerData;
+            instance.collectionData = collectionData;
+            instance.challengeData = challengeData;
+
             Debug.Log("ServerDataManager loaded successfully.");
         }
         else
@@ -34,90 +38,85 @@ public class ServerDataManager : SingletonSO<ServerDataManager>
         }
     }
 
-    public string GetLoginUrl()
+    public void LoadAll()
     {
-        return $"{baseUrl}/{loginEndpoint}";
-    }    
-    
-    public string GetLogoutUrl()
-    {
-        return $"{baseUrl}/{logoutEndpoint}";
+       playerData = LoadPlayer();
+        collectionData = LoadCollections();
+        challengeData = LoadChallenges();
     }
-    
-    public string GetRegistrationUrl()
+
+    public static void SavePlayer(PlayerData data)
     {
-        return $"{baseUrl}/{registrationEndPoint}";
-    }    
-    
-    public string GetLeaderboardUrl()
+        File.WriteAllText(PlayerPath, JsonUtility.ToJson(data, true));
+    }
+
+    public static PlayerData LoadPlayer() {
+        if (!File.Exists(PlayerPath)) {
+            var empty = new PlayerData();
+            SavePlayer(empty);
+            return empty;
+        }
+        return JsonUtility.FromJson<PlayerData>(File.ReadAllText(PlayerPath));
+    }
+
+    public static void SaveCollections(CollectionData data)
     {
-        return $"{baseUrl}/{leaderboardEndpoint}";
+        File.WriteAllText(CollectionPath, JsonUtility.ToJson(data, true));
+    }
+
+    public static CollectionData LoadCollections() {
+        if (!File.Exists(CollectionPath)) {
+            var empty = new CollectionData { foundSpecies = new List<Species>() };
+            SaveCollections(empty);
+            return empty;
+        }
+        return JsonUtility.FromJson<CollectionData>(File.ReadAllText(CollectionPath));
+    }
+
+    public static void SaveChallenges(ChallengeData data)
+    {
+        File.WriteAllText(ChallengePath, JsonUtility.ToJson(data, true));
+    }
+
+    public static ChallengeData LoadChallenges() {
+        if (!File.Exists(ChallengePath)) {
+            var empty = new ChallengeData { challenges = new List<Challenge>() };
+            SaveChallenges(empty);
+            return empty;
+        }
+        return JsonUtility.FromJson<ChallengeData>(File.ReadAllText(ChallengePath));
     }
 }
 
 [Serializable]
-public class ServerResponse
+public class PlayerData
 {
-    public string Status;
-    public string Message;
-    public Result Result;
+    public string name;
+    public string userName;
+    public int xp;
+    public int level;
 }
 
 [Serializable]
-public class LeaderboardResponse
+public class CollectionData
 {
-    public string Status;
-    public string Message;
-    public LeaderboardResult Result;
+    public string userName;
+    public List<Species> foundSpecies = new();
 }
 
 [Serializable]
-public class LeaderboardResult
+public class Challenge
 {
-    public List<LeaderBoardItem> topUsers;
-    public LeaderBoardItem user;
+    public string title;
+    public List<string> description = new();
+
+    public string type;
+    public bool completed;
 }
 
 [Serializable]
-public class LeaderBoardItem
+public class ChallengeData
 {
-    public string player;
-    public string wins;
-    public string position;
+    public string userName;
+    public List<Challenge> challenges = new();
 }
-
-[Serializable]
-public class Result
-{
-    public string useID;
-    public string email;
-    public string accessToken;
-    public string refreshToken;
-    public string accessTokenExpiry;
-    public string refreshTokenExpiry;
-}
-
-[Serializable]
-public class RegistrationRequestData
-{
-    public string UserId;
-    public string UserName;
-    public string Email;
-    public string Password;
-    public string ConfirmPassword;
-}
-
-[Serializable]
-public class LoginRequestData
-{
-    public string UserId;
-    public string Password;
-}
-
-[Serializable]
-public class WSLobbyMessage
-{
-    //public string eventType;
-    public List<string> users = new List<string>();
-}
-
