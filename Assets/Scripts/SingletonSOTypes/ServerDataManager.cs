@@ -22,13 +22,9 @@ public class GameDataManager : SingletonSO<GameDataManager>
         GameDataManager instance = Instance;
         if (instance != null)
         {
-            var playerData = LoadPlayer();
-            var collectionData = LoadCollections();
-            var challengeData = LoadChallenges();
-
-            instance.playerData = playerData;
-            instance.collectionData = collectionData;
-            instance.challengeData = challengeData;
+            instance.LoadPlayer();
+            instance.LoadCollections();
+            instance.LoadChallenges();
 
             Debug.Log("ServerDataManager loaded successfully.");
         }
@@ -40,51 +36,47 @@ public class GameDataManager : SingletonSO<GameDataManager>
 
     public void LoadAll()
     {
-       playerData = LoadPlayer();
-        collectionData = LoadCollections();
-        challengeData = LoadChallenges();
+        LoadPlayer();
+        LoadCollections();
+        LoadChallenges();
     }
 
-    public static void SavePlayer(PlayerData data)
+    public void SavePlayer()
     {
-        File.WriteAllText(PlayerPath, JsonUtility.ToJson(data, true));
+        File.WriteAllText(PlayerPath, JsonUtility.ToJson(playerData, true));
     }
 
-    public static PlayerData LoadPlayer() {
+    public void LoadPlayer() {
         if (!File.Exists(PlayerPath)) {
-            var empty = new PlayerData();
-            SavePlayer(empty);
-            return empty;
+            SavePlayer();
         }
-        return JsonUtility.FromJson<PlayerData>(File.ReadAllText(PlayerPath));
+        playerData = JsonUtility.FromJson<PlayerData>(File.ReadAllText(PlayerPath));
     }
 
-    public static void SaveCollections(CollectionData data)
+    [ContextMenu("SaveCollections")]
+    public void SaveCollections()
     {
-        File.WriteAllText(CollectionPath, JsonUtility.ToJson(data, true));
+        File.WriteAllText(CollectionPath, JsonUtility.ToJson(collectionData, true));
     }
 
-    public static CollectionData LoadCollections() {
+    public void LoadCollections() {
         if (!File.Exists(CollectionPath)) {
-            var empty = new CollectionData { foundSpecies = new List<Species>() };
-            SaveCollections(empty);
-            return empty;
+            SaveCollections();
         }
-        return JsonUtility.FromJson<CollectionData>(File.ReadAllText(CollectionPath));
+        collectionData =  JsonUtility.FromJson<CollectionData>(File.ReadAllText(CollectionPath));
     }
 
-    public static void SaveChallenges(ChallengeData data)
+    [ContextMenu("SaveChallenges")]
+    public void SaveChallenges()
     {
-        File.WriteAllText(ChallengePath, JsonUtility.ToJson(data, true));
+        File.WriteAllText(ChallengePath, JsonUtility.ToJson(challengeData, true));
     }
 
-    public static ChallengeData LoadChallenges() {
+    public void LoadChallenges() {
         if (!File.Exists(ChallengePath)) {
-            var empty = new ChallengeData { challenges = new List<Challenge>() };
-            SaveChallenges(empty);
-            return empty;
+            SaveChallenges();
         }
-        return JsonUtility.FromJson<ChallengeData>(File.ReadAllText(ChallengePath));
+        challengeData = JsonUtility.FromJson<ChallengeData>(File.ReadAllText(ChallengePath));
     }
 }
 
@@ -108,9 +100,9 @@ public class CollectionData
 public class Challenge
 {
     public string title;
-    public List<string> description = new();
+    public string description;
 
-    public string type;
+    public ChallengeButtonMode type;
     public bool completed;
 }
 

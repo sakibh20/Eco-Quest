@@ -9,8 +9,11 @@ public class ChallengeButton : MonoBehaviour
     [SerializeField] private Image buttonImage;
     [SerializeField] private TextMeshProUGUI buttonText;
     
-    [SerializeField] private Color32 playColor;
-    [SerializeField] private Color32 scanColor;
+    // [SerializeField] private Color32 playColor;
+    // [SerializeField] private Color32 scanColor;
+    
+    [SerializeField] private Sprite scanSprite;
+    [SerializeField] private Sprite playSprite;
 
     private Button _button;
 
@@ -25,7 +28,7 @@ public class ChallengeButton : MonoBehaviour
 
     private void InItButton()
     {
-        buttonImage.color = mode == ChallengeButtonMode.Scan ? scanColor : playColor;
+        buttonImage.sprite = mode == ChallengeButtonMode.Scan ? scanSprite : playSprite;
         buttonText.text = mode == ChallengeButtonMode.Scan ? "Scan" : "Play";
     }
 

@@ -101,6 +101,9 @@ public class UIManager : MonoBehaviour
         xpText.text = $"{XPManager.Instance.XP.ToString()} XP";
         xpInGameText.text = $"{XPManager.Instance.XP.ToString()}";
         xpTextInProfile.text = $"XP: {XPManager.Instance.XP.ToString()}";
+        
+        GameDataManager.Instance.playerData.xp = XPManager.Instance.XP;
+        GameDataManager.Instance.SavePlayer();
     }
 
     
@@ -108,6 +111,11 @@ public class UIManager : MonoBehaviour
     {
         PlayerPrefs.SetString(nameValueKey, nameInputField.text);
         PlayerPrefs.SetString(userNameValueKey, userNameInputField.text);
+
+        GameDataManager.Instance.playerData.name = nameInputField.text;
+        GameDataManager.Instance.playerData.userName = userNameInputField.text;
+        
+        GameDataManager.Instance.SavePlayer();
     }
 
     public void OnClickSubmit()

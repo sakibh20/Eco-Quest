@@ -12,3 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc31445e9fff8645b37c2d53124ce3a, type: 3}
   m_Name: GameDataManager
   m_EditorClassIdentifier: 
+  playerData:
+    name: Sakib Hasan
+    userName: skb_sec
+    xp: 0
+    level: 0
+  challengeData:
+    userName: 
+    challenges:
+    - title: Scan Norway Spruce
+      description: 'The fastest-growing of all spruces, the norway spruce (Picea
+        abies) makes for a good roosting spot for owls and hawks. '
+      type: 0
+      completed: 0
+    - title: Scan Scots Pine
+      description: Scots pine (Pinus sylvestris) is a native Eurasian pine plant
+        that grows on nutrient-poor, dry, rocky soils.
+      type: 0
+      completed: 0
+    - title: Play Game
+      description: Play and complete In-Game  tasks.
+      type: 1
+      completed: 0
+    - title: Scan Birch
+      description: A birch is a thin-leaved deciduous hardwood tree of the genus
+        Betula in the family Betulaceae.
+      type: 0
+      completed: 0
+    - title: Play Game
+      description: Play and complete In-Game  tasks.
+      type: 1
+      completed: 0
+    - title: Scan Bird Cherry
+      description: Bird cherry (Prunus padus) is a small deciduous cherry tree in
+        the subgenus Padus.
+      type: 0
+      completed: 0
+  collectionData:
+    userName: 
+    foundSpecies: []

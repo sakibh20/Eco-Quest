@@ -40,7 +40,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 250}
+  m_SizeDelta: {x: 0, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9123248742932998649
 CanvasRenderer:
@@ -63,14 +63,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.22745098}
+  m_Color: {r: 0.9882353, g: 0.9607843, b: 0.72156864, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e80ca8e3b7345b54b86d10c63d9d9820, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 393073e52eee29c418de319a1711a0aa, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 3
 --- !u!114 &425241810370732360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 150, y: 60}
+  m_SizeDelta: {x: 150, y: 70}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &2412140654019064174
 CanvasRenderer:
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 393073e52eee29c418de319a1711a0aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 834fbcb259ca00345be658c2a4aedd0e, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -299,12 +299,8 @@ MonoBehaviour:
   mode: 0
   buttonImage: {fileID: 2748791305992190846}
   buttonText: {fileID: 6593900444754229375}
-  playColor:
-    serializedVersion: 2
-    rgba: 4278232063
-  scanColor:
-    serializedVersion: 2
-    rgba: 4286689091
+  scanSprite: {fileID: 21300000, guid: 73ce309a11f673c429c87cf2cdef9e14, type: 3}
+  playSprite: {fileID: 21300000, guid: 834fbcb259ca00345be658c2a4aedd0e, type: 3}
 --- !u!1 &1209795684479840910
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +357,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209795684479840910}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -464,7 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -562,15 +558,15 @@ MonoBehaviour:
   m_text: 'The fastest-growing of all spruces, the norway spruce (Picea abies) makes
     for a good roosting spot for owls and hawks. '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e940a69d1809a354d80b2f75f8c9fc1a, type: 2}
-  m_sharedMaterial: {fileID: 7300182828294794847, guid: e940a69d1809a354d80b2f75f8c9fc1a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b3b78c3633b019e4b8ef443308442702, type: 2}
+  m_sharedMaterial: {fileID: -2635906938701928533, guid: b3b78c3633b019e4b8ef443308442702, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4282410302
+  m_fontColor: {r: 0.24313726, g: 0.39607844, b: 0.2509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -698,15 +694,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Scan Norway Spruce
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e940a69d1809a354d80b2f75f8c9fc1a, type: 2}
-  m_sharedMaterial: {fileID: 7300182828294794847, guid: e940a69d1809a354d80b2f75f8c9fc1a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 473773aff440bb04b999b90c84ff1d1f, type: 2}
+  m_sharedMaterial: {fileID: 5720874311544417822, guid: 473773aff440bb04b999b90c84ff1d1f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4282410302
+  m_fontColor: {r: 0.24313726, g: 0.39607844, b: 0.2509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -729,7 +725,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 17
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -801,8 +797,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5}
+  m_SizeDelta: {x: 0, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8143833176861987517
 CanvasRenderer:
@@ -834,8 +830,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Scan
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 473773aff440bb04b999b90c84ff1d1f, type: 2}
+  m_sharedMaterial: {fileID: 5720874311544417822, guid: 473773aff440bb04b999b90c84ff1d1f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -865,7 +861,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
