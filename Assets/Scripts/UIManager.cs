@@ -71,6 +71,13 @@ public class UIManager : MonoBehaviour
         InitUi();
     }
 
+    public void LogOut()
+    {
+        HideHome();
+        HideProfileView();
+        ShowSignUp();
+    }
+
     private void InitUi()
     {
         if (PlayerPrefs.HasKey(nameValueKey))
@@ -128,7 +135,12 @@ public class UIManager : MonoBehaviour
     {
         inputPanel.SetActive(true);
         homePanel.SetActive(false);
-    }    
+    }
+
+    private void HideHome()
+    {
+        homePanel.SetActive(false);
+    }
     
     private void ShowHome()
     {
