@@ -31,8 +31,15 @@ This project is currently in the **concept and UI prototyping phase**, with a fu
 
 ---
 
-## 📷 Screenshots
-*To be added once gameplay is more functional*
+## 🎞 UI and concept flow demo
+
+|  |  |
+|--------|---|
+| ![](Screenshots/1.png) | ![](Screenshots/2.png) |
+| ![](Screenshots/3.png) | ![](Screenshots/4.png) |
+| ![](Screenshots/5.png) | ![](Screenshots/6.png) |
+| ![](Screenshots/7.png) | ![](Screenshots/8.png) |
+
 
 ---
 
@@ -44,9 +51,8 @@ This project is currently in the **concept and UI prototyping phase**, with a fu
 
 ---
 
-## 📂 Submissions
-- 🔗 [Game Build Link](#) *(replace with your hosted game link)*
-- 📄 [Pitch Presentation (PDF)](#) *(replace with presentation link)*
+## 📱 Try the APK  
+🔗 [**Download EcoQuest.apk**](./Shareable/EcoQuest.apk)
 
 ---
 
